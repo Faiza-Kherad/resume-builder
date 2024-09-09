@@ -1,31 +1,53 @@
-// Get form and preview elements
+
 const form = document.getElementById('resume-form') as HTMLFormElement;
 const preview = document.getElementById('resume-preview') as HTMLElement;
 
-// Get input fields
+
 const fullNameInput = document.getElementById('fullName') as HTMLInputElement;
 const emailInput = document.getElementById('email') as HTMLInputElement;
 const skillsInput = document.getElementById('skills') as HTMLInputElement;
 const experienceInput = document.getElementById('experience') as HTMLTextAreaElement;
 
-// Get preview display elements
+
 const previewName = document.getElementById('preview-name') as HTMLElement;
 const previewEmail = document.getElementById('preview-email') as HTMLElement;
 const previewSkills = document.getElementById('preview-skills') as HTMLElement;
 const previewExperience = document.getElementById('preview-experience') as HTMLElement;
 
-// Function to generate the resume preview
+
 form.addEventListener('submit', (e: Event) => {
   e.preventDefault();
 
-  // Set the values in the preview section
+
   previewName.textContent = fullNameInput.value;
   previewEmail.textContent = emailInput.value;
-  previewSkills.textContent = skillsInput.value;
+
+  const skills = skillsInput.value.split(',').map(skill => skill.trim());
+  previewSkills.innerHTML = '';
+  skills.forEach(skill => {
+    const li = document.createElement('li');
+    li.textContent = skill;
+    previewSkills.appendChild(li);
+  });
+
   previewExperience.textContent = experienceInput.value;
 
-  // Show the preview section
+
   preview.classList.remove('hidden');
 });
 
+const updateFormFromPreview = () => {
+  fullNameInput.value = previewName.textContent || '';
+  emailInput.value = previewEmail.textContent || '';
 
+
+  const skillsArray = Array.from(previewSkills.querySelectorAll('li')).map(li => li.textContent?.trim()).filter(Boolean) as string[];
+  skillsInput.value = skillsArray.join(', ');
+
+  experienceInput.value = previewExperience.textContent || '';
+};
+
+
+[previewName, previewEmail, previewSkills, previewExperience].forEach(el => {
+  el.addEventListener('input', updateFormFromPreview);
+});

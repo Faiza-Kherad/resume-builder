@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,65 +8,52 @@
   <script defer src="script.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 p-8">
-  <div class="container mx-auto">
-    <h1 class="text-4xl font-bold text-center mb-8">Resume Builder</h1>
-    
-    <!-- Form for Personal Information -->
-    <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
-      <h2 class="text-2xl font-semibold mb-4">Personal Information</h2>
-      
-      <form id="resume-form">
-        <!-- Full Name -->
-        <div class="mb-4">
-          <label class="block text-gray-700 text-lg">Full Name</label>
-          <input type="text" id="fullName" class="border p-3 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your Name" required>
-        </div>
-        
-        <!-- Email -->
-        <div class="mb-4">
-          <label class="block text-gray-700 text-lg">Email</label>
-          <input type="email" id="email" class="border p-3 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your Email" required>
-        </div>
-        
-        <!-- Skills -->
-        <div class="mb-4">
-          <label class="block text-gray-700 text-lg">Skills</label>
-          <input type="text" id="skills" class="border p-3 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. JavaScript, TypeScript, HTML" required>
-        </div>
 
-        <!-- Experience -->
-        <div class="mb-4">
-          <label class="block text-gray-700 text-lg">Experience</label>
-          <textarea id="experience" class="border p-3 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Describe your work experience" required></textarea>
-        </div>
-
-        <!-- Submit Button -->
-        <button type="submit" class="bg-blue-500 text-white p-3 rounded-lg w-full font-bold text-lg hover:bg-blue-600 transition-all">Generate Resume</button>
-      </form>
-    </div>
-
-    <!-- Resume Preview Section -->
-    <div id="resume-preview" class="bg-white p-8 rounded-lg shadow-lg hidden">
-      <h2 class="text-3xl font-bold text-center mb-6">Resume Preview</h2>
-      
-      <div class="border-b pb-4 mb-6">
-        <p id="preview-name" class="text-2xl font-bold text-gray-800"></p>
-        <p id="preview-email" class="text-gray-600 text-lg"></p>
-      </div>
-
-      <div class="mb-6">
-        <h3 class="text-xl font-semibold text-gray-700 mb-2">Skills</h3>
-        <p id="preview-skills" class="text-gray-700 leading-7"></p>
-      </div>
-
-      <div>
-        <h3 class="text-xl font-semibold text-gray-700 mb-2">Experience</h3>
-        <p id="preview-experience" class="text-gray-700 leading-7"></p>
-      </div>
-      
-      
-    </div>
+<body class="bg-gradient-to-r from-pink-100 to-rose-100">
+<!-- Resume Form -->
+<form id="resume-form" class="max-w-lg mx-auto p-6 bg-gradient-to-r from-pink-100 to-rose-100 shadow-lg rounded-lg">
+  <h2 class="text-3xl font-bold text-pink-600 mb-6 text-center">Create Your Resume</h2>
+  <div class="mb-6">
+    <label for="fullName" class="block text-gray-800 font-semibold">Full Name</label>
+    <input id="fullName" type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300 transition duration-200" placeholder="Enter your full name" />
   </div>
+  <div class="mb-6">
+    <label for="email" class="block text-gray-800 font-semibold">Email</label>
+    <input id="email" type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300 transition duration-200" placeholder="Enter your email address" />
+  </div>
+  <div class="mb-6">
+    <label for="skills" class="block text-gray-800 font-semibold">Skills</label>
+    <input id="skills" type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300 transition duration-200" placeholder="e.g. JavaScript, TypeScript, Graphic Design" />
+  </div>
+  <div class="mb-6">
+    <label for="experience" class="block text-gray-800 font-semibold">Experience</label>
+    <textarea id="experience" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-300 transition duration-200" placeholder="Briefly describe your experience"></textarea>
+  </div>
+  <button type="submit" class="w-full bg-pink-600 text-white py-3 rounded-lg hover:bg-pink-700 transition duration-200 font-bold">Generate Resume Preview</button>
+</form>
+
+<!-- Resume Preview -->
+<div id="resume-preview" class="max-w-lg mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg hidden">
+  <h2 class="text-3xl font-bold text-rose-600 mb-4 text-center">Resume Preview</h2>
+  <div class="mb-4">
+    <h3 class="text-lg font-semibold text-gray-700">Full Name:</h3>
+    <p id="preview-name" class="text-gray-900" contenteditable="true"></p>
+  </div>
+  <div class="mb-4">
+    <h3 class="text-lg font-semibold text-gray-700">Email:</h3>
+    <p id="preview-email" class="text-gray-900" contenteditable="true"></p>
+  </div>
+  <div class="mb-4">
+    <h3 class="text-lg font-semibold text-gray-700">Skills:</h3>
+    <ul id="preview-skills" class="text-gray-900 list-disc ml-5" contenteditable="true"></ul>
+  </div>
+  <div class="mb-4">
+    <h3 class="text-lg font-semibold text-gray-700">Experience:</h3>
+    <p id="preview-experience" class="text-gray-900" contenteditable="true"></p>
+  </div>
+</div>
+
+
 </body>
+
 </html>
